@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIO.Project.Example3DFaceRe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIO.Project", "BIO.Project\BIO.Project.csproj", "{0DA82CBC-69C7-41B9-B3FD-285DF1B68E72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIO.Project.Example2", "BIO.Project.Example2\BIO.Project.Example2.csproj", "{8C44B1F2-7AA4-4283-841F-764A408EC2E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIO.Project.FingerVeinRecognition", "BIO.Project.Example2\BIO.Project.FingerVeinRecognition.csproj", "{8C44B1F2-7AA4-4283-841F-764A408EC2E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
