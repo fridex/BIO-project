@@ -10,25 +10,27 @@ using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.Util;
 using BIO.Framework.Core.FeatureVector;
+using BIO.Project.FingerVeinRecognition.VeinBiometricSystem;
 
-namespace BIO.Project.Example1 {
-    class FaceFeatureVectorExtractor3 : IFeatureVectorExtractor<EmguGrayImageInputData, EmguGrayImageFeatureVector> {
+namespace BIO.Project.FingerVeinRecognition
+{
+    class VeinFeatureVectorExtractor : IFeatureVectorExtractor<EmguGrayImageInputData, VeinFeatureVector> {
         #region IFeatureVectorExtractor<EmguGrayImageInputData,EmguGrayImageFeatureVector> Members
 
-        public EmguGrayImageFeatureVector extractFeatureVector(EmguGrayImageInputData input) {
-            
+        public VeinFeatureVector extractFeatureVector(EmguGrayImageInputData input) {
+            //TODO zmenseni upravit podle pdf
             Image<Gray, byte> smaller = input.Image.Resize(0.15, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
 
-            smaller._SmoothGaussian(3);
-            smaller._EqualizeHist();
-            
-
+           
             EmguGrayImageFeatureVector fv = new EmguGrayImageFeatureVector(new System.Drawing.Size(smaller.Width, smaller.Height));
 
             fv.FeatureVector = smaller.Copy();
 
-            
-            return fv;
+            VeinFeatureVector featureVector = new VeinFeatureVector();
+
+            //TODO nejak to extrahovat :)
+
+            return featureVector;
         }
 
         #endregion

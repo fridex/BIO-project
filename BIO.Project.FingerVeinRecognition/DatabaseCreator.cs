@@ -9,12 +9,13 @@ using BIO.Framework.Core.Database;
 using BIO.Framework.Extensions.Standard.Database.InputDatabase;
 
 
-namespace BIO.Project.Example1 {
-    class FaceDatabaseCreator : Framework.Core.Database.IDatabaseCreator<StandardRecord<StandardRecordData>> {
+namespace BIO.Project.FingerVeinRecognition
+{
+    class DatabaseCreator : Framework.Core.Database.IDatabaseCreator<StandardRecord<StandardRecordData>> {
 
         string databasePath;
 
-        public FaceDatabaseCreator(string databasePath) {
+        public DatabaseCreator(string databasePath) {
             this.databasePath = databasePath;
         }
         
@@ -24,12 +25,12 @@ namespace BIO.Project.Example1 {
             Framework.Core.Database.Database<StandardRecord<StandardRecordData>> database = new Framework.Core.Database.Database<StandardRecord<StandardRecordData>>();
 
             DirectoryInfo di = new DirectoryInfo(this.databasePath);
-            FileInfo[] files = di.GetFiles("*.tiff");
+            FileInfo[] files = di.GetFiles("*.bmp");
             foreach (FileInfo f in files) {
 
                 string [] parts = f.Name.Split(new char [] {'.'},  StringSplitOptions.RemoveEmptyEntries);
 
-                BiometricID bioID = new BiometricID(parts[0], "face");
+                BiometricID bioID = new BiometricID(parts[0], "fingerVein");
                 StandardRecordData data = new StandardRecordData(f.FullName);
                 StandardRecord<StandardRecordData> record = new StandardRecord<StandardRecordData>(f.Name, bioID, data);
 

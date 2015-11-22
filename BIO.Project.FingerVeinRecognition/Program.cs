@@ -5,7 +5,8 @@ using System.Text;
 using BIO.Framework.Extensions.Standard.Database.InputDatabase;
 
 
-namespace BIO.Project.Example1 {
+namespace BIO.Project.FingerVeinRecognition
+{
     /// <summary>
     /// example 1 program
     /// to run please download the face database from 
