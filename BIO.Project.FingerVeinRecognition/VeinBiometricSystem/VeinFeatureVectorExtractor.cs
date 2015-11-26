@@ -17,20 +17,68 @@ namespace BIO.Project.FingerVeinRecognition
     class VeinFeatureVectorExtractor : IFeatureVectorExtractor<EmguGrayImageInputData, VeinFeatureVector> {
         #region IFeatureVectorExtractor<EmguGrayImageInputData,EmguGrayImageFeatureVector> Members
 
+        int[] neighbours = new int[18] { -1,-1,-1,0,-1,1,0,1,1,1,1,0,1,-1,0,-1,-1,-1 };
+
         public VeinFeatureVector extractFeatureVector(EmguGrayImageInputData input) {
-            //TODO zmenseni upravit podle pdf
-            Image<Gray, byte> smaller = input.Image.Resize(0.15, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
-
-           
+            //pokud je obrazek sirsi nez 300px, zmensi se na sirku 300. Viz pdf
+            Image<Gray, byte> smaller;
+            if (input.Image.Width > 300)
+            {
+                smaller = input.Image.Resize(300.0 / input.Image.Width, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
+            }
+            else
+            {
+                smaller = input.Image.Resize(1.0, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
+            }
+            
             EmguGrayImageFeatureVector fv = new EmguGrayImageFeatureVector(new System.Drawing.Size(smaller.Width, smaller.Height));
-
             fv.FeatureVector = smaller.Copy();
 
-            VeinFeatureVector featureVector = new VeinFeatureVector();
-
-            //TODO nejak to extrahovat :)
+            //extrakce rysu. Funkce potrebuje papilarni linie o sirce jednoho pixelu
+            //neni vubec otestovane, jen nabusene :)
+            VeinFeatureVector featureVector = extractFeature(fv);
 
             return featureVector;
+        }
+
+        VeinFeatureVector extractFeature(EmguGrayImageFeatureVector fv)
+        {
+            VeinFeatureVector featureVector = new VeinFeatureVector();
+            MinutiaeType minutiaeType;
+            for (int y = 1; y < fv.FeatureVector.Height; y++)
+            {
+                for (int x = 1; x < fv.FeatureVector.Width; x++)
+                {
+                    minutiaeType = minutiaeAtPos(x, y, fv);
+                    if (minutiaeType != MinutiaeType.NONE)
+                    {
+                        Minutiae minutiae = new Minutiae();
+                        minutiae.positionX = x;
+                        minutiae.positionY = y;
+                        minutiae.type = minutiaeType;
+
+                        featureVector.Minutiaes.Add(minutiae);
+                    }
+                }
+            }
+            return featureVector;
+        }
+
+        MinutiaeType minutiaeAtPos(int  x, int y, EmguGrayImageFeatureVector fv)
+        {
+            int neighPix = 0;
+            for (int i = 0; i < 16; i += 2)
+            {
+                if (fv.FeatureVector.Data[y + neighbours[i], x + neighbours[i+1], 0] !=
+                    fv.FeatureVector.Data[y + neighbours[i+2], x + neighbours[i + 3], 0])
+                        neighPix++;
+            }
+            if (neighPix == 1)
+                return MinutiaeType.ENDING;
+            else if (neighPix == 3)
+                return MinutiaeType.BIFURCATION;
+            else
+                return MinutiaeType.NONE;
         }
 
         #endregion

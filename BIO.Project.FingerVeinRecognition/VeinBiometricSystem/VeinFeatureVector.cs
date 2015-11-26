@@ -8,18 +8,16 @@ using BIO.Framework.Core.FeatureVector;
 namespace BIO.Project.FingerVeinRecognition.VeinBiometricSystem
 {
 
+    public enum MinutiaeType { BIFURCATION, ENDING, NONE };
     //prevzato z http://www.stud.fit.vutbr.cz/~xvanaj00/bio/?page_id=175
     [Serializable]
     public class Minutiae
     {
         public int positionX;
         public int positionY;
-        public double angle;
-        public enum MinutiaeType { CROSS, ENDING };
         public MinutiaeType type;
     }
-
-    [Serializable]
+    
     public class VeinFeatureVector : IFeatureVector
     {
         public List<Minutiae> minutiae;
