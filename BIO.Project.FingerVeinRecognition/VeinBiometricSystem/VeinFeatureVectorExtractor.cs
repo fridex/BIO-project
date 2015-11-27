@@ -34,6 +34,13 @@ namespace BIO.Project.FingerVeinRecognition
             EmguGrayImageFeatureVector fv = new EmguGrayImageFeatureVector(new System.Drawing.Size(smaller.Width, smaller.Height));
             fv.FeatureVector = smaller.Copy();
 
+            //TODO upravit obrazek aby se jednalo pouze o samotne papilarni linie
+            //mozna pujde pouzit jiz implementovane funkce jako SmoothGaussian, HoughLines, SmoothMedian, SmoothBlur, ThresholdAdaptive
+            //nejlepsi by bylo ale pouzit adaptive histogram equalization (CLAHE), dle pdf http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.476.8969&rep=rep1&type=pdf
+
+            //funkce CLAHE() je dostupna az v EMGU 3, takze bych to asi stahl a zkusil nahradit
+
+
             //extrakce rysu. Funkce potrebuje papilarni linie o sirce jednoho pixelu
             //neni vubec otestovane, jen nabusene :)
             VeinFeatureVector featureVector = extractFeature(fv);
@@ -71,11 +78,12 @@ namespace BIO.Project.FingerVeinRecognition
             {
                 if (fv.FeatureVector.Data[y + neighbours[i], x + neighbours[i+1], 0] !=
                     fv.FeatureVector.Data[y + neighbours[i+2], x + neighbours[i + 3], 0])
-                        neighPix++;
+                        neighPix += Math.Abs(fv.FeatureVector.Data[y + neighbours[i], x + neighbours[i + 1], 0]
+                                    - fv.FeatureVector.Data[y + neighbours[i + 2], x + neighbours[i + 3], 0]);
             }
-            if (neighPix == 1)
+            if (neighPix == 2)
                 return MinutiaeType.ENDING;
-            else if (neighPix == 3)
+            else if (neighPix == 6)
                 return MinutiaeType.BIFURCATION;
             else
                 return MinutiaeType.NONE;
