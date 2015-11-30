@@ -220,5 +220,16 @@ DOC/*.log
 DOC/*.aux
 DOC/*.out
 DOC/*.toc
+DOC/pres/*.aux
+DOC/pres/*.pdf
+DOC/pres/*.ps
+DOC/pres/*.dvi
+DOC/pres/*.log
+DOC/pres/*.aux
+DOC/pres/*.nav
+DOC/pres/*.snm
+DOC/pres/*.out
+DOC/pres/*.toc
+DOC/pres/pres.pdf
 doc.pdf
 xpokor32.zip
