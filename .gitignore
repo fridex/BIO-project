@@ -210,3 +210,15 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+
+# Custom
+DOC/*.aux
+DOC/*.pdf
+DOC/*.ps
+DOC/*.dvi
+DOC/*.log
+DOC/*.aux
+DOC/*.out
+DOC/*.toc
+doc.pdf
+xpokor32.zip
