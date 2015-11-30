@@ -1,0 +1,102 @@
+% ACH1 project
+% Fridolin Pokorny
+% xpokor32@stud.fit.vutbr.cz
+% date: 30.09.2013
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[slovak]{babel}
+\usepackage[top=2.5cm, left=2cm, right=2cm, text={18cm, 25cm}]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\uva}[1]{\quotedblbase #1\textquotedblleft}
+
+\usepackage{xcolor}%[usenames,dvipsnames]
+%\usepackage{listings,fancyvrb,multicol,array}
+%\usepackage{pdflscape}
+
+\usepackage{caption}
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{0.988\textwidth}{#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+\usepackage{titlesec}
+%\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{xcolor}
+\usepackage{longtable}
+\usepackage{verbatim}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{textcomp}
+\usepackage{graphicx}
+\usepackage{float}
+%\usepackage{wrapfig}
+%\usepackage{siunitx}
+%\usepackage{lipsum}
+%\usepackage{amsmath}
+\usepackage{fancyvrb,parcolumns}
+\titleformat{\chapter}
+  {\normalfont\LARGE\bfseries}{\thechapter.}{1em}{}
+
+\definecolor{col_ident}{RGB}{10,10,90}
+\definecolor{col_keyw}{RGB}{160,0,0}
+\definecolor{col_comm}{RGB}{0,80,0}
+\definecolor{col_str}{RGB}{255,127,0}
+
+\definecolor{col_obj_addr}{RGB}{0,0,0}
+\definecolor{col_obj_insn}{RGB}{90,90,40}
+\definecolor{col_obj_cnst}{RGB}{0,0,0}
+\definecolor{col_obj_othr}{RGB}{255,127,0}
+
+\begin{document}
+\title{Dokumentácia projektu do kurzu Biometrické systémy}
+\author{Pokorný Fridolín \& Tomáš Rajča}
+\date{\today}
+
+\vspace*{\fill}
+\begin{center}
+\textbf{\Huge\textbf{Dokumentácia projektu do kurzu Biometrické systémy}} \\
+\vspace{8mm}
+\textit{\Large\color{gray} Extrakce rysů ze sítnice}\\
+\vspace*{\fill}
+\vspace*{\fill}
+\hfill\textbf{Pokorný Fridolín} \\
+\hfill{\href{mailto:xpokor32@stud.fit.vutbr.cz}{\nolinkurl{xpokor32@stud.fit.vutbr.cz}}} \\
+\hfill\textbf{Rajča Tomáš} \\
+\hfill{\href{mailto:xrajca00@stud.fit.vutbr.cz}{\nolinkurl{xrajca00@stud.fit.vutbr.cz}}} \\
+\hfill{FIT VUT Brno} \\
+\hfill\today
+\end{center}
+\vspace*{\fill}
+
+\thispagestyle{empty}
+\clearpage
+
+\begin{verbatim}
+  * spravit dokumentaciu
+\end{verbatim}
+
+\setcounter{page}{1}
+\clearpage
+
+\section{Úvod} \label{uvod}
+
+\section{Záver} \label{zaver}
+
+\clearpage
+
+\bibliographystyle{unsrt}
+\bibliography{sample}
+\addcontentsline{toc}{section}{Literatúra}
+\begin{thebibliography}{99}
+
+\bibitem{bats}
+  {Nickolay I. Hristov, Margrit Betke, Thomas H. Kunz},
+  \emph{Applications of thermal infrared imaging for research in aeroecology},
+  Addison Wesley, Massachusetts,
+  2nd edition,
+  2002.
+
+\end{thebibliography}
+
+\end{document}
+
