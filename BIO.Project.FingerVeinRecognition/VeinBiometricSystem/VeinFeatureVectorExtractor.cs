@@ -52,9 +52,9 @@ namespace BIO.Project.FingerVeinRecognition
         {
             VeinFeatureVector featureVector = new VeinFeatureVector();
             MinutiaeType minutiaeType;
-            for (int y = 1; y < fv.FeatureVector.Height - 1; y++)
+            for (int y = 1; y < fv.FeatureVector.Height; y++)
             {
-                for (int x = 1; x < fv.FeatureVector.Width - 1; x++)
+                for (int x = 1; x < fv.FeatureVector.Width; x++)
                 {
                     minutiaeType = minutiaeAtPos(x, y, fv);
                     if (minutiaeType != MinutiaeType.NONE)
@@ -71,15 +71,15 @@ namespace BIO.Project.FingerVeinRecognition
             return featureVector;
         }
 
-        MinutiaeType minutiaeAtPos(int x, int y, EmguGrayImageFeatureVector fv)
+        MinutiaeType minutiaeAtPos(int  x, int y, EmguGrayImageFeatureVector fv)
         {
             int neighPix = 0;
             for (int i = 0; i < 16; i += 2)
             {
-                if (fv.FeatureVector.Data[y + neighbours[i], x + neighbours[i + 1], 0] !=
-                    fv.FeatureVector.Data[y + neighbours[i + 2], x + neighbours[i + 3], 0])
-                    neighPix += Math.Abs(fv.FeatureVector.Data[y + neighbours[i], x + neighbours[i + 1], 0]
-                                - fv.FeatureVector.Data[y + neighbours[i + 2], x + neighbours[i + 3], 0]);
+                if (fv.FeatureVector.Data[y + neighbours[i], x + neighbours[i+1], 0] !=
+                    fv.FeatureVector.Data[y + neighbours[i+2], x + neighbours[i + 3], 0])
+                        neighPix += Math.Abs(fv.FeatureVector.Data[y + neighbours[i], x + neighbours[i + 1], 0]
+                                    - fv.FeatureVector.Data[y + neighbours[i + 2], x + neighbours[i + 3], 0]);
             }
             if (neighPix == 2)
                 return MinutiaeType.ENDING;
