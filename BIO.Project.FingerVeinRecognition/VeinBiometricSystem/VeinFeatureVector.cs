@@ -17,7 +17,8 @@ namespace BIO.Project.FingerVeinRecognition.VeinBiometricSystem
         public int positionY;
         public MinutiaeType type;
     }
-    
+
+    [Serializable]
     public class VeinFeatureVector : IFeatureVector
     {
         public List<Minutiae> minutiae;
