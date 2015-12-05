@@ -19,8 +19,9 @@ namespace BIO.Project.FingerVeinRecognition.VeinBiometricSystem {
 
         public MatchingScore computeMatchingScore(VeinFeatureVector1 extracted, VeinFeatureVector1 templated) {
             double sum = 0.0;
-            
-            //TODO vymyselet zpusob vypoctu skore
+
+            for (int i = 0; i < extracted.intensity.Count; i++)
+                sum = extracted.intensity[i] - templated.intensity[i];
 
             return new MatchingScore(sum);
         }
