@@ -13,16 +13,12 @@ using BIO.Project.FingerVeinRecognition.VeinBiometricSystem;
 
 namespace BIO.Project.FingerVeinRecognition.VeinBiometricSystem {
     
-    class VeinFeatureVectorComparator : IFeatureVectorComparator<VeinFeatureVector, VeinFeatureVector> {
+    class VeinFeatureVectorComparator4 : IFeatureVectorComparator<VeinFeatureVector, VeinFeatureVector> {
 
         #region IFeatureVectorComparator<VeinFeatureVector,VeinFeatureVector> Members
 
         public MatchingScore computeMatchingScore(VeinFeatureVector extracted, VeinFeatureVector templated) {
-            double sum = 0.0;
-            
-            //TODO vymyselet zpusob vypoctu skore
-
-            return new MatchingScore(sum);
+            throw new NotImplementedException();
         }
 
         #endregion

@@ -48,7 +48,7 @@ namespace BIO.Project.FingerVeinRecognition.VeinBiometricSystem {
         /// Registrace porovnávacího algoritmu. Porovnává se šablona v databázi s aktuálním vektorem rysů.
         /// </summary>
         private IFeatureVectorComparator<VeinFeatureVector, VeinFeatureVector> createFeatureVectorComparator() {
-            return new VeinFeatureVectorComparator();
+            return new VeinFeatureVectorComparator1();
         }
 
         /// <summary>

@@ -80,7 +80,10 @@
     <Compile Include="VeinBiometricSystem\VeinFeatureVector.cs" />
     <Compile Include="EvaluationSettings.cs" />
     <Compile Include="DatabaseCreator.cs" />
-    <Compile Include="VeinBiometricSystem\VeinFeatureVectorComparator.cs" />
+    <Compile Include="VeinBiometricSystem\VeinFeatureVectorComparator4.cs" />
+    <Compile Include="VeinBiometricSystem\VeinFeatureVectorComparator3.cs" />
+    <Compile Include="VeinBiometricSystem\VeinFeatureVectorComparator2.cs" />
+    <Compile Include="VeinBiometricSystem\VeinFeatureVectorComparator1.cs" />
     <Compile Include="VeinBiometricSystem\VeinFeatureVectorExtractor2.cs" />
     <Compile Include="VeinBiometricSystem\VeinFeatureVectorExtractor4.cs" />
     <Compile Include="VeinBiometricSystem\VeinFeatureVectorExtractor3.cs" />
