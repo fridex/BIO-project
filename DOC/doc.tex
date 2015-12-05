@@ -3,7 +3,7 @@
 % xpokor32@stud.fit.vutbr.cz
 % date: 30.09.2013
 
-\documentclass[12pt,a4paper]{article}
+\documentclass[11pt,a4paper]{article}
 \usepackage[slovak]{babel}
 \usepackage[top=2.5cm, left=2cm, right=2cm, text={18cm, 25cm}]{geometry}
 \usepackage[T1]{fontenc}
@@ -31,7 +31,7 @@
 \usepackage{float}
 %\usepackage{wrapfig}
 %\usepackage{siunitx}
-%\usepackage{lipsum}
+\usepackage{lipsum}
 %\usepackage{amsmath}
 \usepackage{fancyvrb,parcolumns}
 \titleformat{\chapter}
@@ -68,11 +68,18 @@
 \end{center}
 \vspace*{\fill}
 
+\renewcommand{\baselinestretch}{1.5}
 \thispagestyle{empty}
 \clearpage
 
 \begin{verbatim}
-  * spravit dokumentaciu
+TODO:
+  * popisat Alg1 + vysledky
+  * popisat Alg2 + vysledky
+  * popisat Alg3 + vysledky
+  * popisat Alg4 + vysledky
+  * popisat Alg5 + vysledky
+  * literatura + odkazy na github
 \end{verbatim}
 
 \setcounter{page}{1}
@@ -80,7 +87,134 @@
 
 \section{Úvod} \label{uvod}
 
+Tento dokument popisuje prístupy a metódy použité pri práci na projekte do kurzu
+Biometrické systémy. Cieľom projektu bolo implementovať a otestovať algoritmus
+pre rozpoznávanie ľudí na základe žíl na prstoch pomocou
+\emph{BIO.Framework}\,--\,u. V práci je možné nájsť analýzu niekoľkých
+implementovaných algoritmov spolu s ich vyhodnotením a stručným popisom.
+Implementačné detajly je možné následne nájsť v priložených zdrojových súboroch.
+
+Dokumentácia je členená na niekoľko častí. V časti \ref{data} je možné nájsť
+informácie o použitých obrazoch zo senzora spolu s ukážkami a ich analýzou. Časť
+\ref{algoritmy} sprehľadňuje jednotlivé navrhnuté a implementované algoritmy.
+V tejto sekcii je možné nájsť aj prehľad výsledkov algoritmov v ucelenom
+porovnaní. Posledná časť \ref{zaver} sumarizuje výsledky práce.
+
+\section{Vstupné data} \label{data}
+
+Vstupné data tvorili poskytnuté snímky zo senzorov. Ukážku použitých snímkov je
+možné vidieť na obrázkoch v ukážke \ref{fig:img}. 
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=2.5cm]{fig/img1.eps}
+	\includegraphics[width=2.5cm]{fig/img2.eps}
+	\caption{\label{fig:img} Ukážka snímkov zo senzorov}
+\end{figure}
+
+Snímky boli uložené ako obrazové bitmapy vo formáte BMP s výškou 119 a šírkou
+354 pixelov. Farebná hĺbka snímkov bola 24bitov, snímky však boli pravdepodobne
+predspracované, šedotónové.
+
+Celkovo bolo použitých 126 snímkov od 7 ľudí, každý človek teda poskytol 18
+rôznych snímkov rovnakého prstu z rovnakej ruky.
+
+Bežným ľudským okom bolo presné rozpoznanie zo snímkov veľmi obtiažne,
+v niektorých prípadoch až nemožné.
+
+\section{Implementované algoritmy} \label{algoritmy}
+
+V tejto sekcii je možné nájsť návrh, analýzu a vyhodnotenie jednotlivých
+implementovaných algoritmov pre rozpoznanie človeka na základe žíl prstu.
+
+\clearpage
+\subsection{\emph{Alg1}\,--\,} \label{alg1}
+\texttt{TODO}
+\lipsum[1-32]
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=12cm]{fig/alg1.eps}
+	\caption{\label{fig:alg1} DET a ROC krivky implementovaného algoritmu \emph{Alg1}}
+\end{figure}
+
+\clearpage
+\subsection{\emph{Alg2}\,--\,} \label{alg2}
+\texttt{TODO}
+\lipsum[1-32]
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=12cm]{fig/alg2.eps}
+	\caption{\label{fig:alg2} DET a ROC krivky implementovaného algoritmu \emph{Alg2}}
+\end{figure}
+
+\clearpage
+\subsection{\emph{Alg3}\,--\,} \label{alg3}
+\texttt{TODO}
+\lipsum[1-32]
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=12cm]{fig/alg3.eps}
+	\caption{\label{fig:alg3} DET a ROC krivky implementovaného algoritmu \emph{Alg3}}
+\end{figure}
+
+\clearpage
+\subsection{\emph{Alg4}\,--\,} \label{alg4}
+\texttt{TODO}
+\lipsum[1-32]
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=12cm]{fig/alg4.eps}
+	\caption{\label{fig:alg4} DET a ROC krivky implementovaného algoritmu \emph{Alg4}}
+\end{figure}
+
+\clearpage
+\subsection{\emph{Alg5}\,--\,} \label{Alg5}
+\texttt{TODO}
+\lipsum[1-32]
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=12cm]{fig/alg5.eps}
+	\caption{\label{fig:alg5} DET a ROC krivky implementovaného algoritmu \emph{Alg5}}
+\end{figure}
+
+\clearpage
+\subsection{Prehľad výsledkov algoritmov} \label{vysledky}
+
+\begin{center}
+\begin{tabular}{ l | c || c }
+  \textbf{Algoritmus} & \textbf{XXX} & \textbf{Použiteľnosť v praxi} \\
+  \emph{Alg1} & TODO & nepoužiteľný \\
+  \emph{Alg2} & TODO & nepoužiteľný \\
+  \emph{Alg3} & TODO & nepoužiteľný \\
+  \emph{Alg4} & TODO & nepoužiteľný \\
+  \emph{Alg5} & TODO & nepoužiteľný \\
+\end{tabular}
+\end{center}
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=12cm]{fig/alg5.eps}
+	\caption{\label{fig:all} DET a ROC krivky všetkých implementovaných algoritmov}
+\end{figure}
+\clearpage
 \section{Záver} \label{zaver}
+
+Bolo celkovo úspešne implementovaných 5 algoritmov pre rozpoznávanie ľudí na
+základe žíl prstu. Algoritmy boli otestované a bola zvážená ich použiteľnosť.
+
+Žiaľ, z implementovaných algoritmov ani jeden nedosahuje výsledky vhodné pre
+prípadné nasadenie do biometrického systému. Hlavný problém vidíme v snímkoch zo
+senzora, ktoré nedosahujú kvality vhodné pre použitie v reálnom biometrickom
+systéme.
+
+Hlavné možné zlepšenie vidíme vo využití lepšieho senzora. Snímky z lepšieho
+senzora by podľa našeho uváženia mohli zlepšiť použiteľnosť implementovaných
+algoritmov. Bez kvalitnejších snímkov žiaľ nevieme získať lepšie výsledky.
 
 \clearpage
 
