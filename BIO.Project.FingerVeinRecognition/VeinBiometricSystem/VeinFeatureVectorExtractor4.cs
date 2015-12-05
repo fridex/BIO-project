@@ -19,12 +19,11 @@ namespace BIO.Project.FingerVeinRecognition
         public VeinFeatureVector4 extractFeatureVector(EmguGrayImageInputData input)
         {
             Image<Gray, byte> smaller = input.Image.Resize(0.15, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
-
+            smaller._EqualizeHist();
 
             EmguGrayImageFeatureVector im = new EmguGrayImageFeatureVector(new System.Drawing.Size(smaller.Width, smaller.Height));
             
             VeinFeatureVector4 fv = new VeinFeatureVector4();
-            smaller._EqualizeHist();
             fv.image = smaller.Copy();
             
 
