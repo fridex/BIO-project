@@ -12,9 +12,9 @@ using BIO.Project.FingerVeinRecognition.VeinBiometricSystem;
 namespace BIO.Project.FingerVeinRecognition.VeinBiometricSystem {
     public class VeinProcessingBlockComponents1 : BIO.Framework.Extensions.Standard.Block.InputDataProcessingBlockSettings<
           EmguGrayImageInputData,
-          VeinFeatureVector,
-          Template<VeinFeatureVector>,
-          VeinFeatureVector
+          VeinFeatureVector1,
+          Template<VeinFeatureVector1>,
+          VeinFeatureVector1
     > {
 
         public VeinProcessingBlockComponents1(string name) : base(name){
@@ -23,22 +23,22 @@ namespace BIO.Project.FingerVeinRecognition.VeinBiometricSystem {
         /// <summary>
         /// Extraktor vektoru rysů, který bude použit jako šablona ze vstupních dat.
         /// </summary>
-        protected override IFeatureVectorExtractor<EmguGrayImageInputData, VeinFeatureVector> createTemplatedFeatureVectorExtractor() {
+        protected override IFeatureVectorExtractor<EmguGrayImageInputData, VeinFeatureVector1> createTemplatedFeatureVectorExtractor() {
             return new VeinFeatureVectorExtractor1();
         }
 
         /// <summary>
         /// Extraktor vektoru rysů ze vstupních dat.
         /// </summary>
-        protected override IFeatureVectorExtractor<EmguGrayImageInputData, VeinFeatureVector> createEvaluationFeatureVectorExtractor() {
+        protected override IFeatureVectorExtractor<EmguGrayImageInputData, VeinFeatureVector1> createEvaluationFeatureVectorExtractor() {
             return new VeinFeatureVectorExtractor1();
         }
 
         /// <summary>
         /// Registrace porovnávacího algoritmu. Porovnává se šablona v databázi s aktuálním vektorem rysů.
         /// </summary>
-        protected override Framework.Core.Comparator.IComparator<VeinFeatureVector, Template<VeinFeatureVector>, VeinFeatureVector> createComparator() {
-            return new BIO.Framework.Extensions.Standard.Comparator.Comparator<VeinFeatureVector, Template<VeinFeatureVector>, VeinFeatureVector>(
+        protected override Framework.Core.Comparator.IComparator<VeinFeatureVector1, Template<VeinFeatureVector1>, VeinFeatureVector1> createComparator() {
+            return new BIO.Framework.Extensions.Standard.Comparator.Comparator<VeinFeatureVector1, Template<VeinFeatureVector1>, VeinFeatureVector1>(
                 this.createFeatureVectorComparator(),
                 this.createScoreSelector()
             );
@@ -47,7 +47,7 @@ namespace BIO.Project.FingerVeinRecognition.VeinBiometricSystem {
         /// <summary>
         /// Registrace porovnávacího algoritmu. Porovnává se šablona v databázi s aktuálním vektorem rysů.
         /// </summary>
-        private IFeatureVectorComparator<VeinFeatureVector, VeinFeatureVector> createFeatureVectorComparator() {
+        private IFeatureVectorComparator<VeinFeatureVector1, VeinFeatureVector1> createFeatureVectorComparator() {
             return new VeinFeatureVectorComparator1();
         }
 

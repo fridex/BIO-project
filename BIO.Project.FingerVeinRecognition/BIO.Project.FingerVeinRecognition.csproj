@@ -77,7 +77,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="VeinBiometricSystem\VeinFeatureVector.cs" />
+    <Compile Include="VeinBiometricSystem\VeinFeatureVector4.cs" />
+    <Compile Include="VeinBiometricSystem\VeinFeatureVector1.cs" />
+    <Compile Include="VeinBiometricSystem\VeinFeatureVector2.cs" />
+    <Compile Include="VeinBiometricSystem\VeinFeatureVector3.cs" />
     <Compile Include="EvaluationSettings.cs" />
     <Compile Include="DatabaseCreator.cs" />
     <Compile Include="VeinBiometricSystem\VeinFeatureVectorComparator4.cs" />
