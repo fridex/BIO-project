@@ -28,7 +28,7 @@ namespace BIO.Project.FingerVeinRecognition
             FileInfo[] files = di.GetFiles("*.bmp");
             foreach (FileInfo f in files) {
 
-                string [] parts = f.Name.Split(new char [] {'.'},  StringSplitOptions.RemoveEmptyEntries);
+                string [] parts = f.Name.Split(new char [] {'_'},  StringSplitOptions.RemoveEmptyEntries);
 
                 BiometricID bioID = new BiometricID(parts[0], "fingerVein");
                 StandardRecordData data = new StandardRecordData(f.FullName);
