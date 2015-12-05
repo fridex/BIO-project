@@ -19,11 +19,11 @@ namespace BIO.Project.FingerVeinRecognition.VeinBiometricSystem
     }
 
     [Serializable]
-    public class VeinFeatureVector : IFeatureVector
+    public class VeinFeatureVector2 : IFeatureVector
     {
         public List<Minutiae> minutiae;
 
-        public VeinFeatureVector()
+        public VeinFeatureVector2()
         {
             this.minutiae = new List<Minutiae>();
         }

@@ -14,12 +14,12 @@ using BIO.Project.FingerVeinRecognition.VeinBiometricSystem;
 
 namespace BIO.Project.FingerVeinRecognition
 {
-    class VeinFeatureVectorExtractor : IFeatureVectorExtractor<EmguGrayImageInputData, VeinFeatureVector> {
+    class VeinFeatureVectorExtractor2 : IFeatureVectorExtractor<EmguGrayImageInputData, VeinFeatureVector2> {
         #region IFeatureVectorExtractor<EmguGrayImageInputData,EmguGrayImageFeatureVector> Members
 
         int[] neighbours = new int[18] { -1,-1,-1,0,-1,1,0,1,1,1,1,0,1,-1,0,-1,-1,-1 };
 
-        public VeinFeatureVector extractFeatureVector(EmguGrayImageInputData input) {
+        public VeinFeatureVector2 extractFeatureVector(EmguGrayImageInputData input) {
             //pokud je obrazek sirsi nez 300px, zmensi se na sirku 300. Viz pdf
             Image<Gray, byte> smaller;
             if (input.Image.Width > 300)
@@ -43,14 +43,14 @@ namespace BIO.Project.FingerVeinRecognition
 
             //extrakce rysu. Funkce potrebuje papilarni linie o sirce jednoho pixelu
             //neni vubec otestovane, jen nabusene :)
-            VeinFeatureVector featureVector = extractFeature(fv);
+            VeinFeatureVector2 featureVector = extractFeature(fv);
 
             return featureVector;
         }
 
-        VeinFeatureVector extractFeature(EmguGrayImageFeatureVector fv)
+        VeinFeatureVector2 extractFeature(EmguGrayImageFeatureVector fv)
         {
-            VeinFeatureVector featureVector = new VeinFeatureVector();
+            VeinFeatureVector2 featureVector = new VeinFeatureVector2();
             MinutiaeType minutiaeType;
             for (int y = 1; y < fv.FeatureVector.Height - 1; y++)
             {

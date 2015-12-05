@@ -77,16 +77,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="VeinBiometricSystem\VeinFeatureVector.cs" />
+    <Compile Include="VeinBiometricSystem\VeinFeatureVector4.cs" />
+    <Compile Include="VeinBiometricSystem\VeinFeatureVector1.cs" />
+    <Compile Include="VeinBiometricSystem\VeinFeatureVector2.cs" />
+    <Compile Include="VeinBiometricSystem\VeinFeatureVector3.cs" />
     <Compile Include="EvaluationSettings.cs" />
     <Compile Include="DatabaseCreator.cs" />
-    <Compile Include="VeinBiometricSystem\VeinFeatureVectorComparator.cs" />
-    <Compile Include="VeinBiometricSystem\VeinFeatureVectorExtractor.cs" />
+    <Compile Include="VeinBiometricSystem\VeinFeatureVectorComparator4.cs" />
+    <Compile Include="VeinBiometricSystem\VeinFeatureVectorComparator3.cs" />
+    <Compile Include="VeinBiometricSystem\VeinFeatureVectorComparator2.cs" />
+    <Compile Include="VeinBiometricSystem\VeinFeatureVectorComparator1.cs" />
+    <Compile Include="VeinBiometricSystem\VeinFeatureVectorExtractor2.cs" />
+    <Compile Include="VeinBiometricSystem\VeinFeatureVectorExtractor4.cs" />
+    <Compile Include="VeinBiometricSystem\VeinFeatureVectorExtractor3.cs" />
+    <Compile Include="VeinBiometricSystem\VeinFeatureVectorExtractor1.cs" />
     <Compile Include="InputDataCreator.cs" />
-    <Compile Include="VeinBiometricSystem\VeinProcessingBlockComponents.cs" />
+    <Compile Include="VeinBiometricSystem\VeinProcessingBlockComponents4.cs" />
+    <Compile Include="VeinBiometricSystem\VeinProcessingBlockComponents3.cs" />
+    <Compile Include="VeinBiometricSystem\VeinProcessingBlockComponents2.cs" />
+    <Compile Include="VeinBiometricSystem\VeinProcessingBlockComponents1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VeinBiometricSystem\VeinProcessingBlockFused.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BIO.Framework.Extensions.Emgu\BIO.Framework.Extensions.Emgu.csproj">
