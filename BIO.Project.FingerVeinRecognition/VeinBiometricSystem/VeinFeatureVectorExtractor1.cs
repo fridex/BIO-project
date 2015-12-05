@@ -20,12 +20,9 @@ namespace BIO.Project.FingerVeinRecognition
         {
             VeinFeatureVector1 fv = new VeinFeatureVector1();
             for (int i = 0; i < input.Image.Height; i++)
-            {
                 for (int j = 0; j < input.Image.Width; j++)
-                {
-                    fv.intensity.Add(input.Image.Bytes[i * input.Image.Height + j]);
-                }
-            }
+                    fv.intensity.Add(input.Image.Data[i, j, 0]);
+
             return fv;
         }
     }

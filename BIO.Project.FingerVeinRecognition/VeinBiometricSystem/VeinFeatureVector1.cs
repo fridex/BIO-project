@@ -13,6 +13,7 @@ namespace BIO.Project.FingerVeinRecognition.VeinBiometricSystem
         public List<double> intensity;
         public VeinFeatureVector1()
         {
+            this.intensity = new List<double>();
         }
     }
 }
