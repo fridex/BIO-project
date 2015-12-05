@@ -24,8 +24,9 @@ namespace BIO.Project.FingerVeinRecognition
             EmguGrayImageFeatureVector im = new EmguGrayImageFeatureVector(new System.Drawing.Size(smaller.Width, smaller.Height));
             
             VeinFeatureVector4 fv = new VeinFeatureVector4();
-            fv.image = smaller.Copy();
             smaller._EqualizeHist();
+            fv.image = smaller.Copy();
+            
 
             return fv;
         }
