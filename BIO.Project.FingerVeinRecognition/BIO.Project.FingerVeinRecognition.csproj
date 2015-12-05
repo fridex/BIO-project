@@ -99,6 +99,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="ProjectSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VeinBiometricSystem\VeinProcessingBlockFused.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BIO.Framework.Extensions.Emgu\BIO.Framework.Extensions.Emgu.csproj">

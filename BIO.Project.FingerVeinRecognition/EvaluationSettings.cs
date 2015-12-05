@@ -19,6 +19,7 @@ namespace BIO.Project.FingerVeinRecognition
             this.addBlockToEvaluation(new VeinBiometricSystem.VeinProcessingBlockComponents2("Alg2").createBlock());
             this.addBlockToEvaluation(new VeinBiometricSystem.VeinProcessingBlockComponents3("Alg3").createBlock());
             this.addBlockToEvaluation(new VeinBiometricSystem.VeinProcessingBlockComponents4("Alg4").createBlock());
+            this.addBlockToEvaluation(new VeinBiometricSystem.VeinProcessingBlockFused());
         }
 
         protected override Framework.Core.InputData.IInputDataCreator<StandardRecord<StandardRecordData>, EmguGrayImageInputData> createInputDataCreator() {
