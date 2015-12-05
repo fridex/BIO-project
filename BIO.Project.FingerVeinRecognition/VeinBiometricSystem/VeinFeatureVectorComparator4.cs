@@ -18,7 +18,23 @@ namespace BIO.Project.FingerVeinRecognition.VeinBiometricSystem {
         #region IFeatureVectorComparator<VeinFeatureVector,VeinFeatureVector> Members
 
         public MatchingScore computeMatchingScore(VeinFeatureVector4 extracted, VeinFeatureVector4 templated) {
-            throw new NotImplementedException();
+            Image<Gray, byte> m1 = extracted.image.Clone();
+
+            m1 = m1.AbsDiff(templated.image);
+
+            double sum = 0;
+            byte[,,] data = m1.Data;
+
+
+            for (int i = m1.Rows - 1; i >= 0; i--)
+            {
+                for (int j = m1.Cols - 1; j >= 0; j--)
+                {
+                    sum += data[i, j, 0];
+                }
+            }
+
+            return new MatchingScore(sum);
         }
 
         #endregion

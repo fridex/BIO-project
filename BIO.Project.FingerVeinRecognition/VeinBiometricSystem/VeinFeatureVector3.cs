@@ -4,17 +4,18 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using BIO.Framework.Core.FeatureVector;
+using Emgu.CV;
+using Emgu.CV.Structure;
 
 namespace BIO.Project.FingerVeinRecognition.VeinBiometricSystem
 {
     [Serializable]
     public class VeinFeatureVector3 : IFeatureVector
     {
-        public List<Minutiae> minutiae;
+        public Image<Gray, byte> image;
 
         public VeinFeatureVector3()
         {
-            throw new NotImplementedException();
         }
     }
 }
