@@ -10,28 +10,28 @@ using BIO.Framework.Core.FeatureVector;
 using BIO.Project.FingerVeinRecognition.VeinBiometricSystem;
 
 namespace BIO.Project.FingerVeinRecognition.VeinBiometricSystem {
-    public class VeinProcessingBlockComponents : BIO.Framework.Extensions.Standard.Block.InputDataProcessingBlockSettings<
+    public class VeinProcessingBlockComponents1 : BIO.Framework.Extensions.Standard.Block.InputDataProcessingBlockSettings<
           EmguGrayImageInputData,
           VeinFeatureVector,
           Template<VeinFeatureVector>,
           VeinFeatureVector
     > {
 
-        public VeinProcessingBlockComponents(string name) : base(name){
+        public VeinProcessingBlockComponents1(string name) : base(name){
         }
 
         /// <summary>
         /// Extraktor vektoru rysů, který bude použit jako šablona ze vstupních dat.
         /// </summary>
         protected override IFeatureVectorExtractor<EmguGrayImageInputData, VeinFeatureVector> createTemplatedFeatureVectorExtractor() {
-            return new VeinFeatureVectorExtractor();
+            return new VeinFeatureVectorExtractor1();
         }
 
         /// <summary>
         /// Extraktor vektoru rysů ze vstupních dat.
         /// </summary>
         protected override IFeatureVectorExtractor<EmguGrayImageInputData, VeinFeatureVector> createEvaluationFeatureVectorExtractor() {
-            return new VeinFeatureVectorExtractor();
+            return new VeinFeatureVectorExtractor1();
         }
 
         /// <summary>

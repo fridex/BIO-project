@@ -14,7 +14,7 @@ using BIO.Project.FingerVeinRecognition.VeinBiometricSystem;
 
 namespace BIO.Project.FingerVeinRecognition
 {
-    class VeinFeatureVectorExtractor : IFeatureVectorExtractor<EmguGrayImageInputData, VeinFeatureVector> {
+    class VeinFeatureVectorExtractor2 : IFeatureVectorExtractor<EmguGrayImageInputData, VeinFeatureVector> {
         #region IFeatureVectorExtractor<EmguGrayImageInputData,EmguGrayImageFeatureVector> Members
 
         int[] neighbours = new int[18] { -1,-1,-1,0,-1,1,0,1,1,1,1,0,1,-1,0,-1,-1,-1 };
