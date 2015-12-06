@@ -11,6 +11,8 @@ using Emgu.CV.Structure;
 using Emgu.Util;
 using BIO.Framework.Core.FeatureVector;
 using BIO.Project.FingerVeinRecognition.VeinBiometricSystem;
+using Emgu.CV.CvEnum;
+using System.IO;
 
 namespace BIO.Project.FingerVeinRecognition
 {
@@ -20,7 +22,6 @@ namespace BIO.Project.FingerVeinRecognition
         int[] neighbours = new int[18] { -1,-1,-1,0,-1,1,0,1,1,1,1,0,1,-1,0,-1,-1,-1 };
 
         public VeinFeatureVector2 extractFeatureVector(EmguGrayImageInputData input) {
-            //pokud je obrazek sirsi nez 300px, zmensi se na sirku 300. Viz pdf
             Image<Gray, byte> smaller;
             if (input.Image.Width > 300)
             {
@@ -30,63 +31,65 @@ namespace BIO.Project.FingerVeinRecognition
             {
                 smaller = input.Image.Resize(1.0, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
             }
+
+            VeinFeatureVector2 fv = new VeinFeatureVector2();
+
+            //CvInvoke.cvShowImage("puvodni obrazek", smaller);
             
-            EmguGrayImageFeatureVector fv = new EmguGrayImageFeatureVector(new System.Drawing.Size(smaller.Width, smaller.Height));
-            fv.FeatureVector = smaller.Copy();
+            Image<Gray, byte> _temp1 = smaller.SmoothGaussian(5);
+            Image<Gray, byte> _temp2 = smaller.SmoothMedian(5);            
+            _temp2 = _temp2.ThresholdAdaptive(new Gray(255), Emgu.CV.CvEnum.ADAPTIVE_THRESHOLD_TYPE.CV_ADAPTIVE_THRESH_MEAN_C, Emgu.CV.CvEnum.THRESH.CV_THRESH_BINARY, 59, new Gray(0));
 
-            //TODO upravit obrazek aby se jednalo pouze o samotne papilarni linie
-            //mozna pujde pouzit jiz implementovane funkce jako SmoothGaussian, HoughLines, SmoothMedian, SmoothBlur, ThresholdAdaptive
-            //nejlepsi by bylo ale pouzit adaptive histogram equalization (CLAHE), dle pdf http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.476.8969&rep=rep1&type=pdf
+            //CvInvoke.cvShowImage("po thresholdingu", _temp2)
 
-            //funkce CLAHE() je dostupna az v EMGU 3, takze bych to asi stahl a zkusil nahradit
+            fv.image = _temp2.CopyBlank();
+            Image<Gray, byte> mask = _temp2.CopyBlank();
 
+            Contour<System.Drawing.Point> largestContour = null;
+            double largestarea = 0;
 
-            //extrakce rysu. Funkce potrebuje papilarni linie o sirce jednoho pixelu
-            //neni vubec otestovane, jen nabusene :)
-            VeinFeatureVector2 featureVector = extractFeature(fv);
-
-            return featureVector;
-        }
-
-        VeinFeatureVector2 extractFeature(EmguGrayImageFeatureVector fv)
-        {
-            VeinFeatureVector2 featureVector = new VeinFeatureVector2();
-            MinutiaeType minutiaeType;
-            for (int y = 1; y < fv.FeatureVector.Height - 1; y++)
+            for (var contours = _temp2.FindContours(CHAIN_APPROX_METHOD.CV_CHAIN_APPROX_SIMPLE,
+                RETR_TYPE.CV_RETR_EXTERNAL); contours != null; contours = contours.HNext)
             {
-                for (int x = 1; x < fv.FeatureVector.Width - 1; x++)
+                if (contours.Area > largestarea)
                 {
-                    minutiaeType = minutiaeAtPos(x, y, fv);
-                    if (minutiaeType != MinutiaeType.NONE)
-                    {
-                        Minutiae minutiae = new Minutiae();
-                        minutiae.positionX = x;
-                        minutiae.positionY = y;
-                        minutiae.type = minutiaeType;
+                    largestarea = contours.Area;
+                    largestContour = contours;
+                    _temp2.Draw(contours, new Gray(255), -1);
+                }
+            }
+            
+            _temp1.Draw(largestContour, new Gray(255), -1);
+            mask.Draw(largestContour, new Gray(255), -1);
 
-                        featureVector.Minutiaes.Add(minutiae);
+            //CvInvoke.cvShowImage("maska", mask2);
+            //CvInvoke.cvShowImage("aplikovana maska", _temp1);
+
+            byte white = 255;
+            for (int y = 1; y < _temp1.Height - 1; y++)
+            {
+                for (int x = 15; x < _temp1.Width - 15; x++)
+                {
+                    if ((mask.Data[y, x - 3, 0] != white) &&
+                        (mask.Data[y, x + 3, 0] != white) &&
+                        (mask.Data[y, x, 0] != white))
+                    {
+                        if ((Math.Abs(_temp1.Data[y, x - 6, 0] - _temp1.Data[y, x, 0]) > 12) &&
+                            (Math.Abs(_temp1.Data[y, x - 6, 0] - _temp1.Data[y, x, 0]) < 22))
+                            fv.image.Data[y, x, 0] = white;
                     }
                 }
             }
-            return featureVector;
-        }
+            fv.image = fv.image.SmoothMedian(3);
+            //string f = "C:\\out2\\";
+            //string [] part = input.FileName.Split('\\');
+            //f += part[part.Length - 1];
+            //fv.image.Save(f);
 
-        MinutiaeType minutiaeAtPos(int x, int y, EmguGrayImageFeatureVector fv)
-        {
-            int neighPix = 0;
-            for (int i = 0; i < 16; i += 2)
-            {
-                if (fv.FeatureVector.Data[y + neighbours[i], x + neighbours[i + 1], 0] !=
-                    fv.FeatureVector.Data[y + neighbours[i + 2], x + neighbours[i + 3], 0])
-                    neighPix += Math.Abs(fv.FeatureVector.Data[y + neighbours[i], x + neighbours[i + 1], 0]
-                                - fv.FeatureVector.Data[y + neighbours[i + 2], x + neighbours[i + 3], 0]);
-            }
-            if (neighPix == 2)
-                return MinutiaeType.ENDING;
-            else if (neighPix == 6)
-                return MinutiaeType.BIFURCATION;
-            else
-                return MinutiaeType.NONE;
+            //CvInvoke.cvShowImage("vysledek", mask);
+            //CvInvoke.cvWaitKey(1000);
+
+            return fv;
         }
 
         #endregion
