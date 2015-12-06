@@ -165,15 +165,35 @@ algoritmu nie sú požiteľné pre reálne nasadenie.
 \vfill
 
 \clearpage
-\subsection{\emph{Alg3}\,--\,} \label{alg3}
-\texttt{TODO}
-\lipsum[1-32]
+\subsection{\emph{Alg3}\,--\,orezanie vstupného snímku} \label{alg3}
+
+Tretí algoritmus sa snažil rozpoznať prst na vstupnom snímku a orezať vstupný
+snímok tak, aby nedochádzalo k porovaniu pozadia snímku - lampy a tieňov.
+Výsledkom extrakcie teda mohli byť obecne rôzne veľké snímky, ktoré obsahovali
+orezanú časť vstupného obrázku. Pri porovnávaní sa následne prispôsobila veľkosť
+porovnávaných obrázkov menším rozmerom (porovnávanie s väčšími pri použití
+lineárnej interpolácie nemalo zásadnejší vplyv na výsledky).
+
+Ukážka orezaného vstupného snímku je ilustrovaná na príklade \ref{fig:alg_out}.
+Výsledky algoritmu sú prezentované v grafe \ref{fig:alg3}. Celkovo sa
+rozpoznávanie nezlepšilo, v niektorých prípadoch došlo skôr ku skôr zhoršeniu.
+
+\vfill
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[height=5cm]{fig/alg3_in.eps}
+	\includegraphics[height=5cm]{fig/alg3_out.eps}
+	\caption{\label{fig:alg_out} Príklad orezania snímku tretím algoritmom}
+\end{figure}
+
+\vfill
 
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=12cm]{fig/alg3.eps}
 	\caption{\label{fig:alg3} Výsledky implementovaného algoritmu \emph{Alg3}}
 \end{figure}
+\vfill
 
 \clearpage
 \subsection{\emph{Alg4}\,--\,} \label{alg4}
@@ -215,17 +235,6 @@ algoritmov. Ilustráciu podstatu tohto prístupu je možné nájsť na obrázku
 
 \clearpage
 \subsection{Prehľad výsledkov algoritmov} \label{vysledky}
-
-\begin{center}
-\begin{tabular}{ l | c || c }
-  \textbf{Algoritmus} & \textbf{XXX} & \textbf{Použiteľnosť v praxi} \\
-  \emph{Alg1} & TODO & nepoužiteľný \\
-  \emph{Alg2} & TODO & nepoužiteľný \\
-  \emph{Alg3} & TODO & nepoužiteľný \\
-  \emph{Alg4} & TODO & nepoužiteľný \\
-  \emph{Alg5} & TODO & nepoužiteľný \\
-\end{tabular}
-\end{center}
 
 \begin{figure}[ht!]
 	\centering
