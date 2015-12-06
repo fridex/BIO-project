@@ -65,17 +65,16 @@ namespace BIO.Project.FingerVeinRecognition
                 }
                 last_val = input.Image.Data[i, input.Image.Width / 2, 0];
             }
-            
 
-            input.Image.ROI = new Rectangle(x_start, y_start, x_end, input.Image.Height);
+            fv.img = input.Image.Clone();
+            fv.img.ROI = new Rectangle(x_start, y_start, x_end, input.Image.Height);
+            fv.img = fv.img.Clone();
         
             // print
             //string f = "C:\\Users\\user\\Desktop\\out\\";
             //string [] part = input.FileName.Split('\\');
             //f += part[part.Length - 1];
             //input.Image.Save(f);
-        
-            fv.img = input.Image.Clone();
             
             return fv;
         }
