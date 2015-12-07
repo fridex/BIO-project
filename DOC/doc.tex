@@ -50,7 +50,7 @@
 
 \begin{document}
 \title{Dokumentácia projektu do kurzu Biometrické systémy}
-\author{Pokorný Fridolín \& Tomáš Rajca}
+\author{Pokorný Fridolín \& Tomáš Rajča}
 \date{\today}
 
 \vspace*{\fill}
@@ -72,13 +72,6 @@
 \renewcommand{\baselinestretch}{1.5}
 \thispagestyle{empty}
 \clearpage
-
-\begin{verbatim}
-TODO:
-  * popisat Alg3 + vysledky
-  * popisat Alg4 + vysledky
-  * popisat Alg5 + vysledky
-\end{verbatim}
 
 \setcounter{page}{1}
 \clearpage
@@ -196,18 +189,30 @@ rozpoznávanie nezlepšilo, v niektorých prípadoch došlo skôr ku skôr zhor�
 \vfill
 
 \clearpage
-\subsection{\emph{Alg4}\,--\,} \label{alg4}
-\texttt{TODO}
-\lipsum[1-32]
+\subsection{\emph{Alg4}\,--\,detekcia priesečníkov so žilami} \label{alg4}
+
+
+
+
 
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[width=12cm]{fig/alg4.eps}
+	\includegraphics[width=2cm]{fig/F_08_puvodni.eps}
+	\includegraphics[width=2cm]{fig/F_08_aplikovana_maska.eps}
+	\includegraphics[width=2cm]{fig/F_08_extrakce.eps}
+	\includegraphics[width=2cm]{fig/F_08_maska.eps}
+	\caption{\label{fig:alg4} Ukážka práce algoritmu \emph{Alg4} (v poradí:
+	pôvodný obrazok, aplikovaná maska, extrakcia, maska)}
+\end{figure}
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=17cm]{fig/alg4.eps}
 	\caption{\label{fig:alg4} Výsledky implementovaného algoritmu \emph{Alg4}}
 \end{figure}
 
 \clearpage
-\subsection{\emph{Alg5}\,--\,Fusion} \label{Alg5}
+\subsection{\emph{Alg5}\,--\,fusion} \label{Alg5}
 
 Posledný algoritmus pre rozpoznávanie na základe žíl prstu využíva implementácie
 všetkých implementovaných algoritmov, kde každý algoritmus je vyhodnotený
@@ -227,20 +232,27 @@ algoritmov. Ilustráciu podstatu tohto prístupu je možné nájsť na obrázku
 
 \clearpage
 
+\vfill
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[width=12cm]{fig/alg5.eps}
+	\includegraphics[width=17cm]{fig/alg5.eps}
 	\caption{\label{fig:alg5} Výsledky implementovaného algoritmu \emph{Alg5}}
 \end{figure}
+\vfill
+\vfill
 
 \clearpage
 \subsection{Prehľad výsledkov algoritmov} \label{vysledky}
 
+\vfill
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[width=12cm]{fig/all.eps}
+	\includegraphics[width=17cm]{fig/det_all.eps}
+	\includegraphics[width=17cm]{fig/roc_all.eps}
 	\caption{\label{fig:all} DET a ROC krivky všetkých implementovaných algoritmov}
 \end{figure}
+\vfill
+\vfill
 
 \clearpage
 \section{Porovnanie s existujúcim nástrojom} \label{konalio}
@@ -312,7 +324,8 @@ kvalitnejších snímkov žiaľ nevieme získať lepšie výsledky.
 \bibitem{mahri}
 	Nurhafizah M., Sundi S. A., Bakhtiar A. R.,
 		\emph{Finger Vein Recognition Algorithm Using Phase Only Correlation},
-	[online: \url{http
+	[online: \url{http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.476.8969&rep=rep1&type=pdf}],
+	[cite: 6.12.2015].
 
 \end{thebibliography}
 
