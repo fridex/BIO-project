@@ -62,7 +62,7 @@
 \vspace*{\fill}
 \hfill\textbf{Pokorný Fridolín} \\
 \hfill{\href{mailto:xpokor32@stud.fit.vutbr.cz}{\nolinkurl{xpokor32@stud.fit.vutbr.cz}}} \\
-\hfill\textbf{Rajča Tomáš} \\
+\hfill\textbf{Rajca Tomáš} \\
 \hfill{\href{mailto:xrajca00@stud.fit.vutbr.cz}{\nolinkurl{xrajca00@stud.fit.vutbr.cz}}} \\
 \hfill{FIT VUT Brno} \\
 \hfill\today
@@ -167,6 +167,15 @@ orezanú časť vstupného obrázku. Pri porovnávaní sa následne prispôsobil
 porovnávaných obrázkov menším rozmerom (porovnávanie s väčšími pri použití
 lineárnej interpolácie nemalo zásadnejší vplyv na výsledky).
 
+Samotná detekcia prstu pracovala nasledovne: Program postupne analyzoval snímok
+zľava do prava po riadku pre detekciu začiatku ľavej časti prstu. Vybral sa
+prostredný riadok, kde je predpoklad u\-mie\-stne\-nia prstu. Pokiaľ sa rozdiely
+v susednuých pixeloch líšili o stanovený prah, prehlásil sa nasledujúci pixel
+ako začiatok ľavek strany prsta. Algoritmus analogicky pracoval z prava do ľava
+pre detekciu pravej časti prstu. Spodná časť obrázka nemusela byť vzhľadom na
+snímky v databázi orezávaná. Odstránenie hornej časti prebiehalo analogicky
+s odstraňovaním pravej a ľavej časti.
+
 Ukážka orezaného vstupného snímku je ilustrovaná na príklade \ref{fig:alg_out}.
 Výsledky algoritmu sú prezentované v grafe \ref{fig:alg3}. Celkovo sa
 rozpoznávanie nezlepšilo, v niektorých prípadoch došlo skôr ku skôr zhoršeniu.
@@ -191,19 +200,36 @@ rozpoznávanie nezlepšilo, v niektorých prípadoch došlo skôr ku skôr zhor�
 \clearpage
 \subsection{\emph{Alg4}\,--\,detekcia priesečníkov so žilami} \label{alg4}
 
+Štvrtý algoritmus sa snaží vyextrahovať samotné žily. Najprv, pokiaľ je šířka
+snímku väčšia než 300px, zmenší ju na 300px \cite{mahri}. V ďalšom kroku sa
+vytvorí maska oblasti prstu pomocou prahovania. Aby oblasť prstu v maske
+neobsahovala \uva{diery}, aplikuje sa funkcia \texttt{FindContours}, ktorá
+vyplní tieto \uva{diery}.  Tatko získaná maska sa aplikuje na pôvodný obrázok,
+čím sa vyextrahuje prst.
+Následne sa porovnávajú pixely ležiace 6 pixelov vedľa seba, či sa ich
+hodnota nelíši minimálne o 12 alebo maximálne o 22 pixelov. Pokiaľ áno, ide o žilu
+a zapíše sa na toto miesto do prázdneho obrázku biely pixel. Takto sa extrahujú
+samotné žily. Okrem toho dôjde počas celého procesu niekoľkokrát k rôznym
+vyhlazovaniam výstupu jednotlivých fází.
 
+Porovnávanie dvoch snímkov funguje na princípe porovnania koľko bielých oblastí pretne
+piamku. Priamky sú vedené po riadkoch obrázku (od 30. riadku po riadok ležiaci
+30 riadkov od konce). Pokiaľ počet prienikov rovnakou priamkou na oboch obrázkoch je
+rovný, započítá sa to ako zhoda. Počet týchto zhod je potom braný ako výsledné
+skóre porovnávania.
 
-
-
+\vfill
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[width=2cm]{fig/F_08_puvodni.eps}
-	\includegraphics[width=2cm]{fig/F_08_aplikovana_maska.eps}
-	\includegraphics[width=2cm]{fig/F_08_extrakce.eps}
-	\includegraphics[width=2cm]{fig/F_08_maska.eps}
+	\includegraphics[width=2.8cm]{fig/F_08_puvodni.eps}
+	\includegraphics[width=2.8cm]{fig/F_08_maska.eps}
+	\includegraphics[width=2.8cm]{fig/F_08_aplikovana_maska.eps}
+	\includegraphics[width=2.8cm]{fig/F_08_extrakce.eps}
 	\caption{\label{fig:alg4} Ukážka práce algoritmu \emph{Alg4} (v poradí:
-	pôvodný obrazok, aplikovaná maska, extrakcia, maska)}
+	pôvodný obrazok, maska, aplikovaná maska a extrakcia)}
 \end{figure}
+\vfill
+\vfill
 
 \begin{figure}[ht!]
 	\centering
